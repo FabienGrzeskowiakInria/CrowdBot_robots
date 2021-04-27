@@ -1,4 +1,27 @@
-﻿using System.Collections;
+﻿// # MIT License
+
+// # Copyright (C) 2018-2021  CrowdBot H2020 European project
+// # Inria Rennes Bretagne Atlantique - Rainbow - Julien Pettré
+
+// # Permission is hereby granted, free of charge, to any person obtaining
+// # a copy of this software and associated documentation files (the
+// # "Software"), to deal in the Software without restriction, including
+// # without limitation the rights to use, copy, modify, merge, publish,
+// # distribute, sublicense, and/or sell copies of the Software, and to
+// # permit persons to whom the Software is furnished to do so, subject
+// # to the following conditions:
+
+// # The above copyright notice and this permission notice shall be
+// # included in all copies or substantial portions of the Software.
+
+// # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+// # EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+// # OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+// # NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+// # LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+// # ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+// # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+using System.Collections;
 using System.Collections.Generic;
 using System;
 using System.IO;
@@ -7,24 +30,25 @@ using UnityEngine;
 public class RealsenseProvider : CameraProvider
 {
     [SerializeField]
-    [Tooltip ("Material containing the shader to compute the depthmap")]
+    [Tooltip("Material containing the shader to compute the depthmap")]
     private Material Mat;
 
     [SerializeField]
-    [Tooltip ("Maximum number of threads in the threadpool")]
+    [Tooltip("Maximum number of threads in the threadpool")]
     private uint ThreadCount = 8;
     [SerializeField]
-    [Tooltip ("Maximum angle above which depth values will be discarded")]
-    [Range (0f, 90f)]
+    [Tooltip("Maximum angle above which depth values will be discarded")]
+    [Range(0f, 90f)]
     private float MaxAngle = 60f;
-    
+
     private Texture2D RGBImage;
     private Byte[] CV_Tex;
     private Byte[] Points;
     private Color32[] RGBValues;
 
-	// Use this for initialization
-	public override void Start () {
+    // Use this for initialization
+    public override void Start()
+    {
         base.Start();
         Camera.depthTextureMode = DepthTextureMode.DepthNormals;
         RGBImage = new Texture2D((int)ResolutionWidth, (int)ResolutionHeight, TextureFormat.RGB24, false, true);
@@ -56,19 +80,19 @@ public class RealsenseProvider : CameraProvider
 
         RGBImage.ReadPixels(Rect, 0, 0);
         RGBImage.Apply();
-        PopulatePoints();
         Graphics.Blit(source, CapturedTexture, Mat);
         renderTextureTo2DTexture();
         ImageData = CapturedImage.GetRawTextureData();
         ConvertToCvFormat();
         Graphics.Blit(CapturedTexture, destination);
+        PopulatePoints();
     }
 
 
     private void ConvertToCvFormat()
     {
         uint step = ResolutionWidth * ResolutionHeight / ThreadCount;
-        for (uint i = 0; i <ThreadCount; ++i)
+        for (uint i = 0; i < ThreadCount; ++i)
         {
             uint start_cv = i * step * 2;
             uint start_tex = i * step * 3;
@@ -95,19 +119,28 @@ public class RealsenseProvider : CameraProvider
 
     private void GetBytesFromFloat(ref byte[] output, float value)
     {
+
         if (output.Length != 4)
         {
             return;
         }
-        uint tmp = (uint)value;
-        // unsafe
-        // {
-        //     tmp = *((uint*)&value);
-        // }
-        output[0] = (byte)(tmp & 0xFF);
-        output[1] = (byte)((tmp >> 8) & 0xFF);
-        output[2] = (byte)((tmp >> 16) & 0xFF);
-        output[3] = (byte)((tmp >> 24) & 0xFF);
+
+        float[] val_array = new float[1] { value };
+        Buffer.BlockCopy(val_array, 0, output, 0, output.Length);
+
+        // garbage collector problems
+        // output = BitConverter.GetBytes(value);
+
+        // following not working and use unsafe code
+        // uint tmp = (uint)value;
+        // // unsafe
+        // // {
+        // //     tmp = *((uint*)&value);
+        // // }
+        // output[0] = (byte)(tmp & 0xFF);
+        // output[1] = (byte)((tmp >> 8) & 0xFF);
+        // output[2] = (byte)((tmp >> 16) & 0xFF);
+        // output[3] = (byte)((tmp >> 24) & 0xFF);
     }
 
     private void PopulatePointWorkUnit(object state)
@@ -123,9 +156,9 @@ public class RealsenseProvider : CameraProvider
         for (uint i = start_index; i < end_index; ++i)
         {
             // Not using the available BitConverter to not clog up the garbage collector
-            GetBytesFromFloat(ref current_x, (i % ResolutionHeight) / 1000f);
-            GetBytesFromFloat(ref current_y, (i % ResolutionWidth) / 1000f);
-            GetBytesFromFloat(ref current_z, (256 * CV_Tex[i * 2 + 1] + CV_Tex[i * 2]) / 1000f);
+            GetBytesFromFloat(ref current_x, (i / ResolutionHeight));
+            GetBytesFromFloat(ref current_y, (i % ResolutionWidth));
+            GetBytesFromFloat(ref current_z, (256 * CV_Tex[i * 2 + 1] + CV_Tex[i * 2]));
             // 16 bytes per point. In order :
             // 4 bytes for x
             // 4 bytes for y
@@ -138,9 +171,12 @@ public class RealsenseProvider : CameraProvider
                 Points[pt_index + index + 4] = current_y[index];
                 Points[pt_index + index + 8] = current_z[index];
             }
-            Points[pt_index + 12] = RGBValues[i].r;
-            Points[pt_index + 13] = RGBValues[i].g;
-            Points[pt_index + 14] = RGBValues[i].b;
+            // Points[pt_index + 12] = RGBValues[i].r;
+            // Points[pt_index + 13] = RGBValues[i].g;
+            // Points[pt_index + 14] = RGBValues[i].b;
+            Points[pt_index + 12] = ImageData[i];
+            Points[pt_index + 13] = ImageData[i+1];
+            Points[pt_index + 14] = ImageData[i+2];
             Points[pt_index + 15] = 0;
         }
     }

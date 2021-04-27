@@ -2034,183 +2034,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &3519691271328704540
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 552363308236746348}
-  - component: {fileID: 1133801294197481489}
-  - component: {fileID: 867287840763634196}
-  - component: {fileID: 867287840763634190}
-  - component: {fileID: 219790199864825671}
-  - component: {fileID: 867287840763634193}
-  - component: {fileID: 867287840763634192}
-  - component: {fileID: 981204498361735098}
-  - component: {fileID: 867287840763634194}
-  - component: {fileID: 861402912}
-  m_Layer: 12
-  m_Name: RosConnector
-  m_TagString: Clock
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &552363308236746348
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3519691271328704540}
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 10.532874, y: -1.2091398, z: -0.6677182}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4696978169194163416}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1133801294197481489
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3519691271328704540}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff98778ae051cfd40a6e4effdf851ebd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Timeout: 10
-  Protocol: 0
-  RosBridgeServerUrl: ws://127.0.0.1:9090
-  start_scripts: 0
---- !u!114 &867287840763634196
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3519691271328704540}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc35bc47d8b154a118a1e351d2829624, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Topic: /clock
-  TimeStep: 0.1
---- !u!114 &867287840763634190
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3519691271328704540}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8346600dd4db234680344092ad74320, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  UrdfRobot: {fileID: 2031811876701041492}
---- !u!114 &219790199864825671
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3519691271328704540}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81c5dfb51482c2e47b602e8096d45712, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Topic: /qolo/twist_cmd
-  TimeStep: 0
-  SubscribedTransform: {fileID: 6434476291884242550}
-  mode: 3
---- !u!114 &867287840763634193
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3519691271328704540}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aae1d8da5a3c0644bb98a540ca597dfb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Topic: /qolo/joint_states
-  JointStateReaders:
-  - {fileID: 1895313175594204591}
-  - {fileID: 5975805728890446532}
-  - {fileID: 6829836663811988594}
-  - {fileID: 1890001997837856166}
-  FrameId: Unity
---- !u!114 &867287840763634192
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3519691271328704540}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0443bbc2c39282f29b28910fd79197d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Topic: /qolo/odom
-  odom: {fileID: 2880021079335112404}
-  FrameId: odom
---- !u!114 &981204498361735098
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3519691271328704540}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a7795084d0499d4f856ab2ec3cf5bf0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Topic: /front_lidar/scan
-  Sensor: {fileID: 6781696028577639189}
-  FrameId: Unity
-  publish_seg_mask: 0
---- !u!114 &867287840763634194
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3519691271328704540}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a7795084d0499d4f856ab2ec3cf5bf0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Topic: /rear_lidar/scan
-  Sensor: {fileID: 1365749848175329384}
-  FrameId: Unity
-  publish_seg_mask: 0
---- !u!114 &861402912
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3519691271328704540}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4f37ccf5d617ccb286ec383c60f17ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Topic: /crowdbot/simulator
 --- !u!1 &3678715984668589218
 GameObject:
   m_ObjectHideFlags: 0
@@ -2239,7 +2062,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 552363308236746348}
   - {fileID: 6434476291884242550}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -6359,7 +6181,7 @@ Transform:
   - {fileID: 6361081822475348336}
   - {fileID: 1365749849243008835}
   m_Father: {fileID: 4696978169194163416}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6434476291884242545
 MonoBehaviour:
@@ -6577,7 +6399,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f541b5ae453d86a4f84423736fbd5d77, type: 2}
+  - {fileID: 2100000, guid: 50e8d87218c9f9649975e35ca3232d32, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7045,7 +6867,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 87f9eef48b296d148babd6f594c7a33d, type: 2}
+  - {fileID: 2100000, guid: 0311cbb0184a51845912c30ec478cb8e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

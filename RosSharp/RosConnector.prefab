@@ -10,15 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 5114873867946678422}
   - component: {fileID: 5114873867946678423}
-  - component: {fileID: 5114873867946678416}
-  - component: {fileID: 5114873867946678420}
-  - component: {fileID: 5114873867946678421}
-  - component: {fileID: 5114873867946678424}
-  - component: {fileID: 5114873867946678425}
+  - component: {fileID: 7430665600963382117}
   - component: {fileID: 5114873867946678427}
-  - component: {fileID: 5114873867946678428}
-  - component: {fileID: 5114873867946678426}
-  - component: {fileID: 5114873867946678429}
+  - component: {fileID: 7430665600963382431}
+  - component: {fileID: 7430665600963382430}
+  - component: {fileID: 7430665600963382116}
+  - component: {fileID: 7430665600963382424}
   m_Layer: 10
   m_Name: RosConnector
   m_TagString: Clock
@@ -56,82 +53,19 @@ MonoBehaviour:
   Protocol: 0
   RosBridgeServerUrl: ws://127.0.0.1:9090
   start_scripts: 0
---- !u!114 &5114873867946678416
+--- !u!114 &7430665600963382117
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5114873867946678417}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc35bc47d8b154a118a1e351d2829624, type: 3}
+  m_Script: {fileID: 11500000, guid: 5dc755f5b8d857c3ca5975c4056530ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Topic: /clock
-  TimeStep: 0
---- !u!114 &5114873867946678420
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5114873867946678417}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8346600dd4db234680344092ad74320, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  UrdfRobot: {fileID: 0}
---- !u!114 &5114873867946678421
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5114873867946678417}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aae1d8da5a3c0644bb98a540ca597dfb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Topic: /joint_states
-  JointStateReaders:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  FrameId: Unity
---- !u!114 &5114873867946678424
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5114873867946678417}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9798f3e9655e9a75857516341a997bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Topic: /right_motor
-  TimeStep: 0
-  MotorWriter: {fileID: 0}
---- !u!114 &5114873867946678425
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5114873867946678417}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9798f3e9655e9a75857516341a997bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Topic: /left_motor
-  TimeStep: 0
-  MotorWriter: {fileID: 0}
 --- !u!114 &5114873867946678427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,7 +81,7 @@ MonoBehaviour:
   Topic: /odom
   odom: {fileID: 0}
   FrameId: odom
---- !u!114 &5114873867946678428
+--- !u!114 &7430665600963382431
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -156,34 +90,55 @@ MonoBehaviour:
   m_GameObject: {fileID: 5114873867946678417}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92dedf3f173285b4d9a806dec2334596, type: 3}
+  m_Script: {fileID: 11500000, guid: 1a7795084d0499d4f856ab2ec3cf5bf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Topic: /joy
-  FrameId: Unity
---- !u!114 &5114873867946678426
+  Topic: /Pepper/front_lidar/scan
+  Sensor: {fileID: 0}
+  FrameId: sick_laser_front
+  publish_seg_mask: 0
+--- !u!114 &7430665600963382430
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5114873867946678417}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8e7046e9f110da4a81262f9658c8514, type: 3}
+  m_Script: {fileID: 11500000, guid: 1a7795084d0499d4f856ab2ec3cf5bf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: Vertical
---- !u!114 &5114873867946678429
+  Topic: /Pepper/back_lidar/scan
+  Sensor: {fileID: 0}
+  FrameId: sick_laser_rear
+  publish_seg_mask: 0
+--- !u!114 &7430665600963382116
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5114873867946678417}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8e7046e9f110da4a81262f9658c8514, type: 3}
+  m_Script: {fileID: 11500000, guid: cb365b6eaa3948d3baa807c56493ddbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: Horizontal
+  Topic: /tf
+  robot: {fileID: 0}
+  FrameId: Map
+--- !u!114 &7430665600963382424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5114873867946678417}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 728fae6c83b464e42865d0ea4c640f46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Topic: /pointcloud
+  Sensor: {fileID: 0}

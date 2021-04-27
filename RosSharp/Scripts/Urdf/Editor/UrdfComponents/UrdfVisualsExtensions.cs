@@ -40,9 +40,24 @@ namespace RosSharp.Urdf.Editor
 
         public static List<Link.Visual> ExportVisualsData(this UrdfVisuals urdfVisuals)
         {
-            UrdfVisual[] urdfVisualsList = urdfVisuals.GetComponentsInChildren<UrdfVisual>();
+            if (urdfVisuals == null)
+            {
+                return new List<Link.Visual>();
+            }
+            else
+            {
+                UrdfVisual[] urdfVisualsList = urdfVisuals.GetComponentsInChildren<UrdfVisual>();
 
-            return urdfVisualsList.Select(urdfCollision => urdfCollision.ExportVisualData()).ToList();
+                if (urdfVisualsList == null)
+                {
+                    return new List<Link.Visual>();
+                }
+                else
+                {
+                    return urdfVisualsList.Select(urdfCollision => urdfCollision.ExportVisualData()).ToList();
+                }
+            }
+
         }
     }
 }
