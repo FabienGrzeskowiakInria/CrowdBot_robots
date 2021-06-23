@@ -121,7 +121,7 @@ namespace crowdbotsim.Urdf
 
         public void GenerateUniqueJointName()
         {
-            JointName = transform.parent.name + "_" + transform.name + "_joint";
+            JointName = parent.name + "_" + transform.name + "_joint";
         }
 
         protected static SimpleJoint.Axis GetAxisData(Vector3 axis)

@@ -25,6 +25,7 @@ namespace RosSharp.RosBridgeClient
     public class TwistForControllerSubscriber : Subscriber<Messages.Geometry.Twist>
     {
         public PepperBaseControl pepper_base;
+        public writeMotor2 diff_drive_base;
 
         protected override void Start()
         {
@@ -33,9 +34,17 @@ namespace RosSharp.RosBridgeClient
 
         protected override void ReceiveMessage(Messages.Geometry.Twist message)
         {
-            pepper_base.theta_speed = message.angular.z;
-            pepper_base.x_speed = message.linear.x;// * Mathf.Cos(message.angular.z) + message.linear.y * Mathf.Sin(message.angular.z);
-            pepper_base.y_speed = message.linear.y;// * Mathf.Sin(message.angular.z) + message.linear.x * Mathf.Cos(message.angular.z);
+            if (pepper_base != null)
+            {
+                pepper_base.theta_speed = message.angular.z;
+                pepper_base.x_speed = message.linear.x;// * Mathf.Cos(message.angular.z) + message.linear.y * Mathf.Sin(message.angular.z);
+                pepper_base.y_speed = message.linear.y;// * Mathf.Sin(message.angular.z) + message.linear.x * Mathf.Cos(message.angular.z);
+            }
+            if (diff_drive_base != null)
+            {
+                diff_drive_base.drive = message.linear.x;
+                diff_drive_base.steer = message.angular.z;
+            }
         }
 
         private void Update()

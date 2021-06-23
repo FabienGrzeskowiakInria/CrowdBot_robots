@@ -31,8 +31,10 @@ public class PointCloudProvider : CameraProvider
 {
     [Range(1, 8)]
     public uint firstDisplay = 2;
-
     public uint ThreadCount = 8;
+
+    public float frequency_update = 5; //Hz
+    private float last_update = 0;
     // PointCloud
     private Byte[] Points;
 
@@ -107,8 +109,13 @@ public class PointCloudProvider : CameraProvider
     {
         if (ToolsTime.DeltaTime > 0)
         {
+            last_update += ToolsTime.DeltaTime;
+        }
+        if (last_update > 1 / frequency_update)
+        {
             OnCameraChange();
             Save();
+            last_update = 0;
         }
     }
 

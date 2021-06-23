@@ -80,7 +80,7 @@ public class writeMotor2 : MonoBehaviour
         float alpha = 1.0f;//1.5f*Time.fixedDeltaTime
         for(int i = 0; i < wheelColliders.Length; i++)
         {
-            current_speed[i] = alpha * (wheelColliders[i].rpm * RPMtoRadianSecond) + (1-alpha)*(last_speed[i]);
+            current_speed[i] = alpha * (wheelColliders[i].rpm * RPMtoRadianSecond * wheelColliders[i].radius) + (1-alpha)*(last_speed[i]);
         }
 
         // for both wheel, PID control using last velocity
@@ -91,13 +91,15 @@ public class writeMotor2 : MonoBehaviour
             cmd[i] = PID[0] * diff;
             if(PID[1] > 0) cmd[i] += PID[1] * sum[i];
             if(PID[2] > 0) cmd[i] += PID[2] * (current_speed[i] - last_speed[i]);        
+            // Debug.Log("diff = " + diff);
         }
         
         // send cmd to wheels
         for(int i = 0; i < cmd.Length; i++)
         {
-            if( float.IsNaN(cmd[i])) cmd[i] = 0;
+            if( float.IsNaN(cmd[i]) || float.IsInfinity(cmd[i])) cmd[i] = 0;
             wheelColliders[i].motorTorque = cmd[i] * Time.fixedDeltaTime;
+            // Debug.Log(wheelColliders[i].motorTorque);
         }    
         // update last speed
         current_speed.CopyTo(last_speed,0);

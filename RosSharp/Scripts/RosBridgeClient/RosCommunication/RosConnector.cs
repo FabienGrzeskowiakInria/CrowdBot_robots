@@ -34,8 +34,8 @@ namespace RosSharp.RosBridgeClient
 
         private MonoBehaviour[] scripts; 
 
-        [HideInInspector]
-        public bool start_scripts = false;
+        // [HideInInspector]
+        // public bool start_scripts = false;
 
 
         public void Awake()
@@ -54,15 +54,15 @@ namespace RosSharp.RosBridgeClient
         
         private void Update()
         {
-            if(start_scripts)
-            {
-                scripts = GetComponents<MonoBehaviour>();
-                foreach( MonoBehaviour script in scripts )
-                {
-                    script.enabled = true;
-                }
-                start_scripts = false;
-            }
+            // if(start_scripts)
+            // {
+            //     scripts = GetComponents<MonoBehaviour>();
+            //     foreach( MonoBehaviour script in scripts )
+            //     {
+            //         script.enabled = true;
+            //     }
+            //     start_scripts = false;
+            // }
         }
 
         public static RosSocket ConnectToRos(Protocols protocolType, string serverUrl, EventHandler onConnected = null, EventHandler onClosed = null)

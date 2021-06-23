@@ -20,7 +20,7 @@ using System;
 namespace RosSharp.RosBridgeClient
 {
     [RequireComponent(typeof(RosConnector))]
-    public abstract class Publisher<T> : MonoBehaviour where T: Message
+    public abstract class Publisher<T> : MonoBehaviour where T : Message
     {
         public string Topic;
         private string publicationId;
@@ -31,7 +31,6 @@ namespace RosSharp.RosBridgeClient
 
         protected virtual void OnEnable()
         {
-            publicationId = GetComponent<RosConnector>().RosSocket.Advertise<T>(Topic);
         }
         protected virtual void OnDisable()
         {
@@ -41,14 +40,25 @@ namespace RosSharp.RosBridgeClient
             }
             catch (Exception ex)
             {
-               //ignore it 
+                //ignore it 
             }
 
         }
 
         protected void Publish(T message)
         {
-            GetComponent<RosConnector>().RosSocket.Publish(publicationId, message);
+            if (publicationId == null)
+            {
+                if (GetComponent<RosConnector>().RosSocket == null) return;
+                else
+                {
+                    publicationId = GetComponent<RosConnector>().RosSocket.Advertise<T>(Topic);
+                }
+            }
+            else
+            {
+                GetComponent<RosConnector>().RosSocket.Publish(publicationId, message);
+            }
         }
 
     }

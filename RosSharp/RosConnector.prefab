@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 7430665600963382430}
   - component: {fileID: 7430665600963382116}
   - component: {fileID: 7430665600963382424}
+  - component: {fileID: 6896957971591373239}
   m_Layer: 10
   m_Name: RosConnector
   m_TagString: Clock
@@ -30,7 +31,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5114873867946678417}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.5494553, y: -1.2091398, z: 3.1768374}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -52,7 +53,6 @@ MonoBehaviour:
   Timeout: 10
   Protocol: 0
   RosBridgeServerUrl: ws://127.0.0.1:9090
-  start_scripts: 0
 --- !u!114 &7430665600963382117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60,7 +60,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5114873867946678417}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5dc755f5b8d857c3ca5975c4056530ad, type: 3}
   m_Name: 
@@ -73,7 +73,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5114873867946678417}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0443bbc2c39282f29b28910fd79197d9, type: 3}
   m_Name: 
@@ -88,7 +88,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5114873867946678417}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a7795084d0499d4f856ab2ec3cf5bf0, type: 3}
   m_Name: 
@@ -104,7 +104,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5114873867946678417}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a7795084d0499d4f856ab2ec3cf5bf0, type: 3}
   m_Name: 
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5114873867946678417}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb365b6eaa3948d3baa807c56493ddbd, type: 3}
   m_Name: 
@@ -135,10 +135,26 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5114873867946678417}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 728fae6c83b464e42865d0ea4c640f46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Topic: /pointcloud
   Sensor: {fileID: 0}
+--- !u!114 &6896957971591373239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5114873867946678417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4bdf0d32b23f0026962d9443d876736, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Topic: /vel_cmd
+  TimeStep: 0
+  pepper_base: {fileID: 0}
+  diff_drive_base: {fileID: 0}
